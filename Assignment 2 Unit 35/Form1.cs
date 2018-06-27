@@ -172,14 +172,36 @@ namespace Assignment_2_Unit_35
             chart2.Series.Add(series);
             foreach (row r in table.Skip(1))
             {
-                series.Points.AddXY(r.time, r.velocity);
+                series.Points.AddXY(r.time, r.altitude);
             }
             chart2.ChartAreas[0].AxisX.Title = "time (s)";
-            chart2.ChartAreas[0].AxisY.Title = "velocity (m/s)";
+            chart2.ChartAreas[0].AxisY.Title = "altitude (m)";
             chart2.ChartAreas[0].RecalculateAxesScale();
         }
 
         private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            chart2.Series.Clear();
+            chart2.ChartAreas[0].AxisX.IsMarginVisible = false;
+            Series series = new Series
+            {
+                Name = "Acceleration",
+                Color = Color.Blue,
+                IsVisibleInLegend = false,
+                ChartType = SeriesChartType.Spline,
+                BorderWidth = 2
+            };
+            chart2.Series.Add(series);
+            foreach (row r in table.Skip(1))
+            {
+                series.Points.AddXY(r.time, r.acceleration);
+            }
+            chart2.ChartAreas[0].AxisX.Title = "time (s)";
+            chart2.ChartAreas[0].AxisY.Title = "acceleration (m/s²)";
+            chart2.ChartAreas[0].RecalculateAxesScale();
+        }
+
+        private void chart2_Click(object sender, EventArgs e)
         {
 
         }
